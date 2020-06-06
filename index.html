@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>First Person Click - FPS Assist Tool</title>
+    <link rel=stylesheet type="text/css" href="canvas.css">
+</head>
+<body>
+<canvas id="GameCanvas"></canvas>
+
+<script>
+    var canvas = document.getElementById("GameCanvas");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    var ctx = canvas.getContext("2d");
+
+    var ctx = canvas.getContext("2d");
+    var x = canvas.width/2;
+    var y = canvas.height/2;
+
+    var score = 0;
+
+    function drawScore(){
+        ctx.font = "10px Arial";
+        ctx.fillStyle = "#0095DD";
+        ctx.fillText("Score: " + score, 8, 20);
+    }
+
+    function drawBall() {
+        x0 = x
+        y0 = y
+        ctx.beginPath();
+        ctx.arc(x, y, 5, 0, Math.PI*2);
+        ctx.fillStyle = "#0095DD";
+        ctx.fill();
+        canvas.addEventListener("dblclick", function(){ 
+            x = Math.floor((Math.random() * canvas.width ) + 1);
+            y = Math.floor((Math.random() * canvas.height ) + 1);
+            score = score + 50;
+            alert("middle")
+        });
+        ctx.closePath();
+
+    }
+
+    function drawBall2(){
+        x0 = x
+        y0 = y
+        ctx.beginPath();
+        ctx.arc(x, y, 20, 0, Math.PI*2);
+        ctx.stroke();
+        canvas.addEventListener("dblclick", function(){ 
+            x = Math.floor((Math.random() * canvas.width ) + 1);
+            y = Math.floor((Math.random() * canvas.height ) + 1);
+            score = score + 30;
+        });
+        ctx.closePath();
+    }
+
+    function drawBall3(){
+        x0 = x
+        y0 = y
+        ctx.beginPath();
+        ctx.arc(x, y, 50, 0, Math.PI*2);
+        ctx.stroke();
+        canvas.addEventListener("dblclick", function(){ 
+            x = Math.floor((Math.random() * canvas.width ) + 1);
+            y = Math.floor((Math.random() * canvas.height ) + 1);
+            score = score + 5;
+        });
+        ctx.closePath();
+    }    
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawScore();
+        drawBall();
+        drawBall2();
+        drawBall3();
+    }
+
+    setInterval(draw, 10);
+</script>
+
+</body>
+</html>
