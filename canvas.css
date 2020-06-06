@@ -1,3 +1,13 @@
 * { padding: 0; margin: 0; }
 
-canvas { background: #eee; display: block; margin: 0 auto; border: 1px solid black; top: 50%; position: fixed; left: 50%; transform: translate(-50%,-50%);}
+canvas { background: #eee; 
+    display: block; 
+    margin: 0 auto; 
+    border: 1px solid black; 
+    top: 50%; 
+    position: fixed; 
+    left: 50%; 
+    transform: translate(-50%,-50%);
+    height: 75%;
+    color: black;
+}

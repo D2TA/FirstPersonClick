@@ -4,17 +4,19 @@
     <meta charset="utf-8" />
     <title>First Person Click</title>
     <link rel=stylesheet type="text/css" href="canvas.css">
+    <link rel=stylesheet type="text/css" href="navbutton.css">
 </head>
 <body>
-<canvas id="GameCanvas"></canvas>
-
+    <div> 
+        <button class="button" style="vertical-align:middle" onclick = "BackgroundChange()"><span>Enter Dark Mode </span></button>
+    </div>
+    <canvas id="GameCanvas"></canvas>
 <script>
     var canvas = document.getElementById("GameCanvas");
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
     var ctx = canvas.getContext("2d");
-
     var ctx = canvas.getContext("2d");
     var x = canvas.width/2;
     var y = canvas.height/2;
@@ -22,9 +24,20 @@
     var xt = 0;
     var y0 = 0;
     var yt = 0;
-    
+    var fillValue = 'white';
+    var modeID = 0; // 1 for Dark Mode
 
     var score = 0;
+
+    function BackgroundChange(){
+        if (modeID == 0){
+            fillValue =  'rgb(25,25,25,0.9)';
+            ctx.fillStyle = fillValue;
+        } else {
+            fillValue = 'white';
+            ctx.fillStyle = fillValue;
+        }
+    }
     
     function MousePosition(canvas, event){
         var rect = canvas.getBoundingClientRect();
@@ -89,7 +102,8 @@
     }    
 
     function draw() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = fillValue;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
         // var xt = event.clientX;
         // var yt = event.clientY;
         drawScore();
