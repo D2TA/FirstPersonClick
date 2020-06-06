@@ -18,18 +18,20 @@
     var ctx = canvas.getContext("2d");
     var x = canvas.width/2;
     var y = canvas.height/2;
+    var x0 = 0;
+    var y0 = 0;
 
     var score = 0;
 
     function drawScore(){
         ctx.font = "10px Arial";
         ctx.fillStyle = "#0095DD";
-        ctx.fillText("Score: " + score, 8, 20);
+        ctx.fillText("Score: " + x0, 8, 20);
     }
 
     function drawBall() {
-        x0 = x
-        y0 = y
+        // x0 = x
+        // y0 = y
         ctx.beginPath();
         ctx.arc(x, y, 5, 0, Math.PI*2);
         ctx.fillStyle = "#0095DD";
@@ -38,15 +40,14 @@
             x = Math.floor((Math.random() * canvas.width ) + 1);
             y = Math.floor((Math.random() * canvas.height ) + 1);
             score = score + 50;
-            alert("middle")
         });
         ctx.closePath();
 
     }
 
     function drawBall2(){
-        x0 = x
-        y0 = y
+        // x0 = x
+        // y0 = y
         ctx.beginPath();
         ctx.arc(x, y, 20, 0, Math.PI*2);
         ctx.stroke();
@@ -59,8 +60,8 @@
     }
 
     function drawBall3(){
-        x0 = x
-        y0 = y
+        // x0 = x
+        // y0 = y
         ctx.beginPath();
         ctx.arc(x, y, 50, 0, Math.PI*2);
         ctx.stroke();
@@ -74,10 +75,20 @@
 
     function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+        // var xt = event.clientX;
+        // var yt = event.clientY;
+
+        // if ( xt - 
+
+        // )
+
+
         drawScore();
         drawBall();
         drawBall2();
         drawBall3();
+        x0 = x
+        y0 = y
     }
 
     setInterval(draw, 10);
