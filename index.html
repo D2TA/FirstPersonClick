@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>First Person Click - FPS Assist Tool</title>
+    <title>First Person Click</title>
     <link rel=stylesheet type="text/css" href="canvas.css">
 </head>
 <body>
@@ -19,14 +19,43 @@
     var x = canvas.width/2;
     var y = canvas.height/2;
     var x0 = 0;
+    var xt = 0;
     var y0 = 0;
+    var yt = 0;
+    
 
     var score = 0;
+    
+    function MousePosition(canvas, event){
+        var rect = canvas.getBoundingClientRect();
+        return {
+            yt: event.ClientX - rect.left,
+            xt: event.ClientY - rect.top
+        };
+    }
 
-    function drawScore(){
+    function drawScore(){        
         ctx.font = "50px Arial";
         ctx.fillStyle = "#0095DD";
-        ctx.fillText("Score: " + x0, 10, 50);
+        ctx.fillText("Current X Position: " + x0, 10, 50);
+        ctx.fillText("Current Y Position: " + y0, 10, 100);
+        ctx.fillText("Intial X Mouse Position: " + xt, 10, 150);
+        ctx.fillText("Intial X Mouse Position: " + yt, 10, 200);
+        ctx.fillText("Intial X Position: " + x0, 10, 250);
+        ctx.fillText("Intial Y Position: " + y0, 10, 300);
+
+        canvas.addEventListener("dblclick", function(event){ 
+            var positionValue = MousePosition(canvas, event);
+            x0 = x
+            y0 = y
+            x = Math.floor((Math.random() * canvas.width ) + 1);
+            y = Math.floor((Math.random() * canvas.height ) + 1);
+            score = score + 50;
+            ctx.fillText("Intial X Mouse Position: " + positionValue.xt, 10, 150);
+            ctx.fillText("Intial X Mouse Position: " + positionValue.yt, 10, 200);
+            ctx.fillText("Intial X Position: " + x0, 10, 250);
+            ctx.fillText("Intial Y Position: " + y0, 10, 300);
+        });
     }
 
     function drawBall() {
@@ -36,11 +65,7 @@
         ctx.arc(x, y, 5, 0, Math.PI*2);
         ctx.fillStyle = "#0095DD";
         ctx.fill();
-        canvas.addEventListener("dblclick", function(){ 
-            x = Math.floor((Math.random() * canvas.width ) + 1);
-            y = Math.floor((Math.random() * canvas.height ) + 1);
-            score = score + 50;
-        });
+
         ctx.closePath();
 
     }
@@ -51,11 +76,6 @@
         ctx.beginPath();
         ctx.arc(x, y, 20, 0, Math.PI*2);
         ctx.stroke();
-        canvas.addEventListener("dblclick", function(){ 
-            x = Math.floor((Math.random() * canvas.width ) + 1);
-            y = Math.floor((Math.random() * canvas.height ) + 1);
-            score = score + 30;
-        });
         ctx.closePath();
     }
 
@@ -65,11 +85,6 @@
         ctx.beginPath();
         ctx.arc(x, y, 50, 0, Math.PI*2);
         ctx.stroke();
-        canvas.addEventListener("dblclick", function(){ 
-            x = Math.floor((Math.random() * canvas.width ) + 1);
-            y = Math.floor((Math.random() * canvas.height ) + 1);
-            score = score + 5;
-        });
         ctx.closePath();
     }    
 
@@ -77,18 +92,10 @@
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         // var xt = event.clientX;
         // var yt = event.clientY;
-
-        // if ( xt - 
-
-        // )
-
-
         drawScore();
         drawBall();
         drawBall2();
         drawBall3();
-        x0 = x
-        y0 = y
     }
 
     setInterval(draw, 10);
